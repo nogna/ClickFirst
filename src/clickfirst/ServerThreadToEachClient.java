@@ -36,14 +36,16 @@ class ServerThreadToEachClient extends Thread {
             }
             
             String goTime = "Press the buttom!";
+            System.out.println("Skickade till :"+ STREAM_OUT_TO_CLIENT);
             STREAM_OUT_TO_CLIENT.writeObject(goTime);
-            
+            STREAM_OUT_TO_CLIENT.flush();
             ///Client Response/////////
             Object clientResponse = STREAM_IN_FROM_CLIENT.readObject();
             System.out.println("Clienten, " + CLIENTSOCKET + " skickade " + clientResponse);
             /////////////////////
 
             String gameResponse = ClickFirst.gamelogic.clientResponded();
+            System.out.println("Sending "+ gameResponse +" to "+CLIENTSOCKET);
             STREAM_OUT_TO_CLIENT.writeObject(gameResponse);
             
         } catch (IOException e) {

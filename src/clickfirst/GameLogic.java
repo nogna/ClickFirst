@@ -43,6 +43,7 @@ public class GameLogic {
         for (int i = 0; i < PLAYER_LIST.size(); i++) {
             String gameOn = "Press the buttom!";
             PLAYER_LIST.get(i).STREAM_OUT_TO_CLIENT.writeObject(gameOn);
+            PLAYER_LIST.get(i).STREAM_OUT_TO_CLIENT.flush();
         }
     }
 

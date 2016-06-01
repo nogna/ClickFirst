@@ -10,6 +10,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import static java.lang.Thread.sleep;
 import java.net.Socket;
+import java.util.Scanner;
 
 /**
  *
@@ -47,14 +48,18 @@ public class Client {
             createStreamsToServer();
             System.out.println("Streams ---- Success");
             SERVER_RESPONSE = STREAM_IN_FROM_SERVER.readObject();
-            if (SERVER_RESPONSE == "Press the buttom!") {
-                
-                
-            }
+            System.out.println("Server response "+ SERVER_RESPONSE);
             
+            Scanner Sc = new Scanner(System.in);
+            String sendThisToServer = Sc.nextLine();
+            STREAM_OUT_TO_SERVER.writeObject(sendThisToServer);
+            STREAM_OUT_TO_SERVER.flush();
+            
+            SERVER_RESPONSE = STREAM_IN_FROM_SERVER.readObject();
+
         } catch (IOException e) {
-            System.out.println("Couldnt connect to " + SERVER);
-            
+            System.out.println("Couldnt connect to " + SERVER + " fel:"+ e);
+
         }
 
         System.out.println("Det här skickade server till mig: " + SERVER_RESPONSE);
