@@ -9,6 +9,8 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -16,8 +18,8 @@ import java.net.Socket;
  */
 class ServerThreadToEachClient extends Thread {
 
-    ObjectOutputStream STREAM_OUT_TO_CLIENT;
-    ObjectInputStream STREAM_IN_FROM_CLIENT;
+    final ObjectOutputStream STREAM_OUT_TO_CLIENT;
+    final ObjectInputStream STREAM_IN_FROM_CLIENT;
     final Socket CLIENTSOCKET;
 
     public ServerThreadToEachClient(Socket socket) throws IOException {
@@ -29,27 +31,26 @@ class ServerThreadToEachClient extends Thread {
 
     public void run() {
         try {
-            System.out.println("Waiting for client, " + CLIENTSOCKET + " to send something...");
-            
-            while(!ClickFirst.gamelogic.GAME_ON){
-                
-            }
-            
-            String goTime = "Press the buttom!";
-            System.out.println("Skickade till :"+ STREAM_OUT_TO_CLIENT);
-            STREAM_OUT_TO_CLIENT.writeObject(goTime);
-            STREAM_OUT_TO_CLIENT.flush();
-            ///Client Response/////////
-            Object clientResponse = STREAM_IN_FROM_CLIENT.readObject();
-            System.out.println("Clienten, " + CLIENTSOCKET + " skickade " + clientResponse);
-            /////////////////////
 
-            String gameResponse = ClickFirst.gamelogic.clientResponded();
-            System.out.println("Sending "+ gameResponse +" to "+CLIENTSOCKET);
-            STREAM_OUT_TO_CLIENT.writeObject(gameResponse);
-            
+            while (true) {
+                if (!(ClickFirst.gamelogic.AMOUNT_OF_PLAYERS == 2)) {
+                    continue;
+                } else {
+                    String gameOn = "Press the buttom!";
+                    STREAM_OUT_TO_CLIENT.writeObject(gameOn);
+
+                    ///Client Response/////////
+                    Object clientResponse = STREAM_IN_FROM_CLIENT.readObject();
+                    System.out.println("Clienten, " + CLIENTSOCKET + " skickade " + clientResponse);
+                    /////////////////////
+
+                    String gameResponse = ClickFirst.gamelogic.clientResponded();
+                    System.out.println("Sending " + gameResponse + " to " + this.getId());
+                    STREAM_OUT_TO_CLIENT.writeObject(gameResponse);
+                }
+            }
         } catch (IOException e) {
-            System.out.println("Connection lost with Client: " + CLIENTSOCKET +" "+ e);
+            System.out.println("Connection lost with Client: " + CLIENTSOCKET + " " + e);
         } catch (ClassNotFoundException ex) {
             System.out.println("Client send something new...?? " + ex);
         }

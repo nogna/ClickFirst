@@ -19,6 +19,7 @@ import java.net.SocketException;
 public class ClickFirst {
     static ServerSocket serverSocket;
     static GameLogic gamelogic;
+    static boolean GAME_ON;
     /**
      * @param args the command line arguments
      */
@@ -27,11 +28,14 @@ public class ClickFirst {
         try {
             serverSocket = new ServerSocket(8080);
             gamelogic = new GameLogic();
+            GAME_ON = false;
             while (true) {
                 Socket newClient = waitForConnection(serverSocket);
                 setUpConnectionWithClient(newClient);
                 if (gamelogic.AMOUNT_OF_PLAYERS == 2) {
+                    GAME_ON = true;
                     gamelogic.start();
+                    
                 } 
             }
         } catch (IOException e) {
@@ -44,8 +48,8 @@ public class ClickFirst {
         try {
             ServerThreadToEachClient clientThread = new ServerThreadToEachClient(newclient);
             System.out.println("Accepted Client: " + clientThread.getId());
-            clientThread.start();
             gamelogic.add(clientThread);
+            clientThread.start();
         } catch (SocketException e) {
             System.out.println("Couldn't connect to Client");
         }

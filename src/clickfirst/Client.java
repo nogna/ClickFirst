@@ -55,14 +55,16 @@ public class Client {
             STREAM_OUT_TO_SERVER.writeObject(sendThisToServer);
             STREAM_OUT_TO_SERVER.flush();
             
+            System.out.println("MEssage sent! lets see if u win");
+            
             SERVER_RESPONSE = STREAM_IN_FROM_SERVER.readObject();
+            System.out.println(SERVER_RESPONSE+"!!!");
 
         } catch (IOException e) {
             System.out.println("Couldnt connect to " + SERVER + " fel:"+ e);
 
         }
 
-        System.out.println("Det här skickade server till mig: " + SERVER_RESPONSE);
     }
 
     private static Socket createSocketToServer() throws IOException {

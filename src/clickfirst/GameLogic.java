@@ -18,41 +18,42 @@ public class GameLogic {
 
     int AMOUNT_OF_PLAYERS;
     ArrayList<ServerThreadToEachClient> PLAYER_LIST;
-    int RESPONSES;
+    boolean LOSER;
     boolean GAME_ON;
 
     public GameLogic() {
         this.PLAYER_LIST = new ArrayList<ServerThreadToEachClient>();
         GAME_ON = false;
+        LOSER = false;
     }
-    
-
 
     void add(ServerThreadToEachClient clientThread) {
-        try{
-        PLAYER_LIST.add(clientThread);
-        AMOUNT_OF_PLAYERS++;
-        }
-        catch(Exception e){
+        try {
+            PLAYER_LIST.add(clientThread);
+            System.out.println("Added "+ clientThread.getId()+" to the game");
+            AMOUNT_OF_PLAYERS++;
+        } catch (Exception e) {
             System.out.println(e + " Woops!");
         }
     }
 
     void start() throws IOException {
-        RESPONSES = 2;
-        for (int i = 0; i < PLAYER_LIST.size(); i++) {
+        LOSER = false;
+        /*for (int i = 0; i < PLAYER_LIST.size(); i++) {
             String gameOn = "Press the buttom!";
+            System.out.println("Sending: "+ gameOn + " to "+ PLAYER_LIST.get(i).getId());
             PLAYER_LIST.get(i).STREAM_OUT_TO_CLIENT.writeObject(gameOn);
             PLAYER_LIST.get(i).STREAM_OUT_TO_CLIENT.flush();
-        }
+        }*/
+        GAME_ON = true;
     }
 
     String clientResponded() {
-        if (RESPONSES == 0) {
-            return "Loser";
-        } else {
-            RESPONSES--;
+        if (!LOSER) {
+            LOSER = true;
             return "Winner";
+        } else {
+            return "Loser";
         }
     }
 
