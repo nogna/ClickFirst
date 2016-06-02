@@ -32,23 +32,21 @@ class ServerThreadToEachClient extends Thread {
     public void run() {
         try {
 
-            while (true) {
-                if (!(ClickFirst.gamelogic.AMOUNT_OF_PLAYERS == 2)) {
-                    continue;
-                } else {
-                    String gameOn = "Press the buttom!";
-                    STREAM_OUT_TO_CLIENT.writeObject(gameOn);
+            while (!(ClickFirst.gamelogic.GAME_ON)) {
 
-                    ///Client Response/////////
-                    Object clientResponse = STREAM_IN_FROM_CLIENT.readObject();
-                    System.out.println("Clienten, " + CLIENTSOCKET + " skickade " + clientResponse);
-                    /////////////////////
-
-                    String gameResponse = ClickFirst.gamelogic.clientResponded();
-                    System.out.println("Sending " + gameResponse + " to " + this.getId());
-                    STREAM_OUT_TO_CLIENT.writeObject(gameResponse);
-                }
             }
+            String gameOn = "Press the buttom!";
+            STREAM_OUT_TO_CLIENT.writeObject(gameOn);
+
+            ///Client Response/////////
+            Object clientResponse = STREAM_IN_FROM_CLIENT.readObject();
+            System.out.println("Clienten, " + CLIENTSOCKET + " skickade " + clientResponse);
+            /////////////////////
+
+            String gameResponse = ClickFirst.gamelogic.clientResponded();
+            System.out.println("Sending " + gameResponse + " to " + this.getId());
+            STREAM_OUT_TO_CLIENT.writeObject(gameResponse);
+
         } catch (IOException e) {
             System.out.println("Connection lost with Client: " + CLIENTSOCKET + " " + e);
         } catch (ClassNotFoundException ex) {
