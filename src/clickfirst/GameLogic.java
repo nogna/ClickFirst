@@ -19,7 +19,7 @@ public class GameLogic {
     int AMOUNT_OF_PLAYERS;
     ArrayList<ServerThreadToEachClient> PLAYER_LIST;
     boolean LOSER;
-    boolean GAME_ON = false;
+    boolean GAME_ON;
 
     public GameLogic() {
         this.PLAYER_LIST = new ArrayList<ServerThreadToEachClient>();
