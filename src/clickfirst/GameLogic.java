@@ -5,16 +5,14 @@
  */
 package clickfirst;
 
-import java.io.IOException;
-import java.net.Socket;
+
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
  * @author Nogna
  */
-public class GameLogic {
+public class GameLogic{
 
     int AMOUNT_OF_PLAYERS;
     ArrayList<ServerThreadToEachClient> PLAYER_LIST;
@@ -37,14 +35,9 @@ public class GameLogic {
         }
     }
 
-    void start() throws IOException {
+    
+    public void startGame(){
         LOSER = false;
-        /*for (int i = 0; i < PLAYER_LIST.size(); i++) {
-            String gameOn = "Press the buttom!";
-            System.out.println("Sending: "+ gameOn + " to "+ PLAYER_LIST.get(i).getId());
-            PLAYER_LIST.get(i).STREAM_OUT_TO_CLIENT.writeObject(gameOn);
-            PLAYER_LIST.get(i).STREAM_OUT_TO_CLIENT.flush();
-        }*/
         GAME_ON = true;
     }
 
