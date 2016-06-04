@@ -39,6 +39,7 @@ public class GameLogic{
     public void startGame(){
         LOSER = false;
         GAME_ON = true;
+
     }
 
     String clientResponded() {
