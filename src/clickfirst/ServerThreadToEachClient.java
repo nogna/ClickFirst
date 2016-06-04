@@ -19,7 +19,7 @@ class ServerThreadToEachClient extends Thread {
     final ObjectOutputStream STREAM_OUT_TO_CLIENT;
     final ObjectInputStream STREAM_IN_FROM_CLIENT;
     final Socket CLIENTSOCKET;
-    private Object lock = new Object();
+    private final Object lock = new Object();
 
     public ServerThreadToEachClient(Socket newclient) throws IOException {
         super("ClientThread");
