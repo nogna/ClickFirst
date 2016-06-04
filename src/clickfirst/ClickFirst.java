@@ -33,7 +33,7 @@ public class ClickFirst {
             while (true) {
                 Socket newClient = waitForConnection(serverSocket);
                 setUpConnectionWithClient(newClient);
-                if (gamelogic.AMOUNT_OF_PLAYERS == 2) {
+                if (gamelogic.AMOUNT_OF_PLAYERS_CURRENTLY == 2) {
                     gamelogic.startGame();
 
                 }

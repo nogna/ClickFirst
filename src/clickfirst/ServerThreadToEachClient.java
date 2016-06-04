@@ -31,10 +31,10 @@ class ServerThreadToEachClient extends Thread {
     public void run() {
         try {
 
-            if (ClickFirst.gamelogic.AMOUNT_OF_PLAYERS == 2) {
+            if (ClickFirst.gamelogic.AMOUNT_OF_PLAYERS_CURRENTLY == ClickFirst.gamelogic.NUMBER_OF_PLAYERS_WHEN_GAME_START) {
                 synchronized (ClickFirst.lock) {
                     System.out.println(this.getId() + " is trying to notify the other thread");
-                    ClickFirst.lock.notify();
+                    ClickFirst.lock.notifyAll();
                 }
             } else {
                 try {
