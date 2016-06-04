@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package clickfirst;
+package Server;
 
+import Server.GameLogic;
+import Server.ServerThreadToEachClient;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.ServerSocket;
@@ -33,7 +35,7 @@ public class ClickFirst {
             while (true) {
                 Socket newClient = waitForConnection(serverSocket);
                 setUpConnectionWithClient(newClient);
-                if (gamelogic.AMOUNT_OF_PLAYERS == 2) {
+                if (gamelogic.AMOUNT_OF_PLAYERS_CURRENTLY == 2) {
                     gamelogic.startGame();
 
                 }

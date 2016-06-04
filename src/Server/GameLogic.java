@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package clickfirst;
+package Server;
 
 
 import java.util.ArrayList;
@@ -14,7 +14,7 @@ import java.util.ArrayList;
  */
 public class GameLogic{
 
-    int AMOUNT_OF_PLAYERS;
+    int AMOUNT_OF_PLAYERS_CURRENTLY, NUMBER_OF_PLAYERS_WHEN_GAME_START;
     ArrayList<ServerThreadToEachClient> PLAYER_LIST;
     boolean LOSER;
     boolean GAME_ON;
@@ -23,13 +23,14 @@ public class GameLogic{
         this.PLAYER_LIST = new ArrayList<ServerThreadToEachClient>();
         GAME_ON = false;
         LOSER = false;
+        NUMBER_OF_PLAYERS_WHEN_GAME_START = 2; //Here you change how many players should be in the game
     }
 
     void add(ServerThreadToEachClient clientThread) {
         try {
             PLAYER_LIST.add(clientThread);
             System.out.println("Added "+ clientThread.getId()+" to the game");
-            AMOUNT_OF_PLAYERS++;
+            AMOUNT_OF_PLAYERS_CURRENTLY++;
         } catch (Exception e) {
             System.out.println(e + " Woops!");
         }
