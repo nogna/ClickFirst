@@ -9,8 +9,6 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -29,12 +27,24 @@ class ServerThreadToEachClient extends Thread {
         STREAM_OUT_TO_CLIENT = new ObjectOutputStream(CLIENTSOCKET.getOutputStream());
     }
 
+    @Override
     public void run() {
         try {
 
-            while (!(ClickFirst.gamelogic.GAME_ON)) {
+            if (ClickFirst.gamelogic.AMOUNT_OF_PLAYERS == 2) {
 
+                this.notifyAll();
+
+            } else {
+                try {
+
+                    this.wait();
+
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
             }
+
             String gameOn = "Press the buttom!";
             STREAM_OUT_TO_CLIENT.writeObject(gameOn);
 

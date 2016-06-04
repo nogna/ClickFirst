@@ -68,6 +68,7 @@ public class Client {
     }
 
     private static Socket createSocketToServer() throws IOException {
+        
         System.out.println("Trying connect to " + SERVER + " on port " + DEFAULT_SOCKET_PORT);
         Socket ClientSocketToServer = new Socket(SERVER, DEFAULT_SOCKET_PORT);
         System.out.println("Just connected to " + ClientSocketToServer.getRemoteSocketAddress());

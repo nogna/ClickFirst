@@ -11,14 +11,15 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketException;
 
-
 /**
  *
  * @author Nogna
  */
 public class ClickFirst {
+
     static ServerSocket serverSocket;
     static GameLogic gamelogic;
+
     /**
      * @param args the command line arguments
      */
@@ -31,9 +32,9 @@ public class ClickFirst {
                 Socket newClient = waitForConnection(serverSocket);
                 setUpConnectionWithClient(newClient);
                 if (gamelogic.AMOUNT_OF_PLAYERS == 2) {
-                    gamelogic.start();
-                    
-                } 
+                    gamelogic.startGame();
+
+                }
             }
         } catch (IOException e) {
             System.out.println("Something went wrong");
@@ -52,7 +53,8 @@ public class ClickFirst {
         }
 
     }
-        private static Socket waitForConnection(ServerSocket serverSocket) throws IOException {
+
+    private static Socket waitForConnection(ServerSocket serverSocket) throws IOException {
         System.out.println("Waiting for client on port: " + serverSocket.getLocalPort()
                 + " and IP: " + InetAddress.getLocalHost());
         return serverSocket.accept();
