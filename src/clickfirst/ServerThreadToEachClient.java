@@ -19,10 +19,11 @@ class ServerThreadToEachClient extends Thread {
     final ObjectOutputStream STREAM_OUT_TO_CLIENT;
     final ObjectInputStream STREAM_IN_FROM_CLIENT;
     final Socket CLIENTSOCKET;
+    private final Object lock = new Object();
 
-    public ServerThreadToEachClient(Socket socket) throws IOException {
+    public ServerThreadToEachClient(Socket newclient) throws IOException {
         super("ClientThread");
-        CLIENTSOCKET = socket;
+        CLIENTSOCKET = newclient;
         STREAM_IN_FROM_CLIENT = new ObjectInputStream(CLIENTSOCKET.getInputStream());
         STREAM_OUT_TO_CLIENT = new ObjectOutputStream(CLIENTSOCKET.getOutputStream());
     }
@@ -32,13 +33,16 @@ class ServerThreadToEachClient extends Thread {
         try {
 
             if (ClickFirst.gamelogic.AMOUNT_OF_PLAYERS == 2) {
-
-                this.notifyAll();
-
+                synchronized (lock) {
+                    System.out.println(this.getId() + " is trying to notify the other thread");
+                    lock.notify();
+                }
             } else {
                 try {
-
-                    this.wait();
+                    synchronized (lock) {
+                        System.out.println(this.getId() + " is now waiting for the game to start...");
+                        lock.wait();
+                    }
 
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
