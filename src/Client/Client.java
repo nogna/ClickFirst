@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package clickfirst;
+package Client;
 
 
 ///SET UP WINDOW
@@ -42,8 +42,8 @@ public class Client extends JFrame implements ActionListener{
     static private Object SERVER_RESPONSE = null;
 
     public static void main(String[] args) throws IOException, ClassNotFoundException, InterruptedException {
-        setUpWindow();
-        //setUpToServer();
+        //setUpWindow();
+        setUpToServer();
 
     }
 
@@ -66,9 +66,6 @@ public class Client extends JFrame implements ActionListener{
 
     }
 
-    /*
-    Closes the correct socket depending on the state
-     */
     private static void closeConnection() throws IOException {
         if (SOCKET != null) {
             SOCKET.close();
@@ -115,7 +112,7 @@ public class Client extends JFrame implements ActionListener{
         window.setVisible(true);
         window.setTitle("Click First!");
         window.setLocationRelativeTo(null);
-        
+        //window.pack(); Kanske vill ha den här
         
         
     }
