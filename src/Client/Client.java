@@ -42,7 +42,7 @@ public class Client extends JFrame implements ActionListener{
     static private Object SERVER_RESPONSE = null;
 
     public static void main(String[] args) throws IOException, ClassNotFoundException, InterruptedException {
-        //setUpWindow();
+        setUpWindow();
         setUpToServer();
 
     }
