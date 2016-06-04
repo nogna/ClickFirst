@@ -20,6 +20,8 @@ public class ClickFirst {
     static ServerSocket serverSocket;
     static GameLogic gamelogic;
 
+    static final Object lock = new Object();
+
     /**
      * @param args the command line arguments
      */
