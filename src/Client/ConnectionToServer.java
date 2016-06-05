@@ -25,7 +25,6 @@ public class ConnectionToServer {
     static public ObjectInputStream STREAM_IN_FROM_SERVER;
     static final int DEFAULT_SOCKET_PORT = 8080;
     static private Object SERVER_RESPONSE = null;
-    
 
     private static Socket createSocketToServer() throws IOException {
 
@@ -46,15 +45,20 @@ public class ConnectionToServer {
 
     }
 
-    private static void closeConnection() throws IOException {
-        if (SOCKET != null) {
-            SOCKET.close();
-        }
-        if (STREAM_OUT_TO_SERVER != null) {
-            STREAM_OUT_TO_SERVER.close();
-        }
-        if (STREAM_IN_FROM_SERVER != null) {
-            STREAM_IN_FROM_SERVER.close();
+    public static void closeConnection() {
+        try {
+            if (SOCKET != null) {
+                SOCKET.close();
+            }
+            if (STREAM_OUT_TO_SERVER != null) {
+                STREAM_OUT_TO_SERVER.close();
+            }
+            if (STREAM_IN_FROM_SERVER != null) {
+                STREAM_IN_FROM_SERVER.close();
+            }
+
+        } catch (IOException e) {
+            System.out.println("Coulnt close the streams...");
         }
     }
 
@@ -83,7 +87,7 @@ public class ConnectionToServer {
 
             STREAM_OUT_TO_SERVER.writeObject(sendThisToServer);
             STREAM_OUT_TO_SERVER.flush();
-            
+
             SERVER_RESPONSE = STREAM_IN_FROM_SERVER.readObject();
             System.out.println(SERVER_RESPONSE + "!!!");
 

@@ -18,6 +18,8 @@ public class Client {
 
         setUp();
         ConnectionToServer.waitForResponse();
+        ConnectionToServer.closeConnection();
+        System.exit(0);
 
     }
 
