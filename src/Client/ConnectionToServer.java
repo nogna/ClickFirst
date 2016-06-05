@@ -23,8 +23,8 @@ public class ConnectionToServer {
     static String SERVER = "localhost";
     static public ObjectOutputStream STREAM_OUT_TO_SERVER;
     static public ObjectInputStream STREAM_IN_FROM_SERVER;
-    static final int DEFAULT_SOCKET_PORT = 8080;
-    static private Object SERVER_RESPONSE = null;
+    static final int DEFAULT_SOCKET_PORT = 9010;
+    static public Object SERVER_RESPONSE = null;
 
     private static Socket createSocketToServer() throws IOException {
 
@@ -82,7 +82,6 @@ public class ConnectionToServer {
 
             System.out.println("Server response " + SERVER_RESPONSE);
 
-
         } catch (IOException | ClassNotFoundException ex) {
             Logger.getLogger(ConnectionToServer.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -90,15 +89,15 @@ public class ConnectionToServer {
     }
 
     static void sendClientResponse() {
-        try{
-        Scanner Sc = new Scanner(System.in);
+        try {
+            /*Scanner Sc = new Scanner(System.in);
         String sendThisToServer = Sc.nextLine();
-
-        STREAM_OUT_TO_SERVER.writeObject(sendThisToServer);
-        STREAM_OUT_TO_SERVER.flush();
-        }
-        catch(IOException e){
-            System.out.println("Error sending - "+ e.getMessage());
+             */
+            String sendThisToServer = "I PRESSED THE BUTTON!";
+            STREAM_OUT_TO_SERVER.writeObject(sendThisToServer);
+            STREAM_OUT_TO_SERVER.flush();
+        } catch (IOException e) {
+            System.out.println("Error sending - " + e.getMessage());
         }
     }
 
