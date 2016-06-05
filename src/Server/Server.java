@@ -17,7 +17,7 @@ import java.net.SocketException;
  *
  * @author Nogna
  */
-public class ClickFirst {
+public class Server {
 
     static ServerSocket serverSocket;
     static GameLogic gamelogic;

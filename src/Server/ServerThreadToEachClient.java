@@ -31,16 +31,16 @@ class ServerThreadToEachClient extends Thread {
     public void run() {
         try {
 
-            if (ClickFirst.gamelogic.AMOUNT_OF_PLAYERS_CURRENTLY == ClickFirst.gamelogic.NUMBER_OF_PLAYERS_WHEN_GAME_START) {
-                synchronized (ClickFirst.lock) {
+            if (Server.gamelogic.AMOUNT_OF_PLAYERS_CURRENTLY == Server.gamelogic.NUMBER_OF_PLAYERS_WHEN_GAME_START) {
+                synchronized (Server.lock) {
                     System.out.println(this.getId() + " is trying to notify the other thread");
-                    ClickFirst.lock.notifyAll();
+                    Server.lock.notifyAll();
                 }
             } else {
                 try {
-                    synchronized (ClickFirst.lock) {
+                    synchronized (Server.lock) {
                         System.out.println(this.getId() + " is now waiting for the game to start...");
-                        ClickFirst.lock.wait();
+                        Server.lock.wait();
                     }
 
                 } catch (InterruptedException e) {
@@ -55,7 +55,7 @@ class ServerThreadToEachClient extends Thread {
             Object clientResponse = STREAM_IN_FROM_CLIENT.readObject();
 
 
-            String gameResponse = ClickFirst.gamelogic.clientResponded();
+            String gameResponse = Server.gamelogic.clientResponded();
             System.out.println("Sending " + gameResponse + " to " + this.getId());
             STREAM_OUT_TO_CLIENT.writeObject(gameResponse);
 

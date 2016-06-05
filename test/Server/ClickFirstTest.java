@@ -28,13 +28,13 @@ public class ClickFirstTest {
     }
 
     /**
-     * Test of main method, of class ClickFirst.
+     * Test of main method, of class Server.
      */
     @Test
     public void testMain() {
         System.out.println("main");
         String[] args = null;
-        ClickFirst.main(args);
+        Server.main(args);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
