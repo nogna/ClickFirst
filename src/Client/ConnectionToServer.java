@@ -75,27 +75,31 @@ public class ConnectionToServer {
         }
     }
 
-    static void waitForResponse() {
+    static void getServerResponse() {
         try {
 
             SERVER_RESPONSE = STREAM_IN_FROM_SERVER.readObject();
 
             System.out.println("Server response " + SERVER_RESPONSE);
 
-            Scanner Sc = new Scanner(System.in);
-            String sendThisToServer = Sc.nextLine();
-
-            STREAM_OUT_TO_SERVER.writeObject(sendThisToServer);
-            STREAM_OUT_TO_SERVER.flush();
-
-            SERVER_RESPONSE = STREAM_IN_FROM_SERVER.readObject();
-            System.out.println(SERVER_RESPONSE + "!!!");
 
         } catch (IOException | ClassNotFoundException ex) {
             Logger.getLogger(ConnectionToServer.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+    }
 
+    static void sendClientResponse() {
+        try{
+        Scanner Sc = new Scanner(System.in);
+        String sendThisToServer = Sc.nextLine();
+
+        STREAM_OUT_TO_SERVER.writeObject(sendThisToServer);
+        STREAM_OUT_TO_SERVER.flush();
+        }
+        catch(IOException e){
+            System.out.println("Error sending - "+ e.getMessage());
+        }
     }
 
 }

@@ -50,12 +50,12 @@ public class ConnectionToServerTest {
     }
 
     /**
-     * Test of waitForResponse method, of class ConnectionToServer.
+     * Test of getServerResponse method, of class ConnectionToServer.
      */
     @Test
     public void testWaitForResponse() {
         System.out.println("waitForResponse");
-        ConnectionToServer.waitForResponse();
+        ConnectionToServer.getServerResponse();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
