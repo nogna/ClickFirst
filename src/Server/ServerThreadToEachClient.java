@@ -53,8 +53,7 @@ class ServerThreadToEachClient extends Thread {
 
             ///Client Response/////////
             Object clientResponse = STREAM_IN_FROM_CLIENT.readObject();
-            System.out.println("Clienten, " + CLIENTSOCKET + " skickade " + clientResponse);
-            /////////////////////
+
 
             String gameResponse = ClickFirst.gamelogic.clientResponded();
             System.out.println("Sending " + gameResponse + " to " + this.getId());
