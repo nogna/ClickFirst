@@ -58,7 +58,7 @@ public class ConnectionToServer {
             }
 
         } catch (IOException e) {
-            System.out.println("Coulnt close the streams...");
+            System.out.println("Coulnt close the streams...- " + e.getMessage());
         }
     }
 
@@ -95,7 +95,6 @@ public class ConnectionToServer {
             Logger.getLogger(ConnectionToServer.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        System.out.println("MEssage sent! lets see if u win");
 
     }
 
