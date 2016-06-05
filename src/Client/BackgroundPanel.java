@@ -14,10 +14,14 @@ import javax.swing.*;
  */
 public class BackgroundPanel extends JFrame {
 
+    private final ImageIcon BACKGROUND;
+    private final JLabel label;
 
     public BackgroundPanel() {
         setLayout(new FlowLayout());
+        BACKGROUND = new ImageIcon(getClass().getResource("Background.png"));
         
+        label = new JLabel(BACKGROUND);
         add(label);
     }
 
