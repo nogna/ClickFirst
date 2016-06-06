@@ -14,7 +14,7 @@ import java.net.Socket;
 import java.net.SocketException;
 
 /**
- *
+ *  
  * @author Nogna
  */
 public class Server {
