@@ -16,8 +16,7 @@ public class GamePad extends javax.swing.JFrame {
      */
     public GamePad() {
         initComponents();
-        textField1.setVisible(true);
-        textField1.setText((String) ConnectionToServer.SERVER_RESPONSE);
+
     }
 
     /**
@@ -48,7 +47,7 @@ public class GamePad extends javax.swing.JFrame {
         getContentPane().add(button1);
         button1.setBounds(380, 150, 80, 40);
 
-        textField1.setVisible(false);
+        textField1.setVisible(true);
         getContentPane().add(textField1);
         textField1.setBounds(170, 10, 160, 50);
 
@@ -92,19 +91,28 @@ public class GamePad extends javax.swing.JFrame {
         //</editor-fold>
 
         ConnectionToServer.setUpToServer();
+
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
             new GamePad().setVisible(true);
         });
         
+        
+        //button1.setEnabled(false);
+//        textField1.setText("Waiting for other players");
         ConnectionToServer.getServerResponse();
+        //textField1.setText("PRESS THE BUTTOM!");
+        //button1.setEnabled(true);
+        ConnectionToServer.getServerResponse();
+        textField1.setText((String) ConnectionToServer.SERVER_RESPONSE);
+        
 
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private java.awt.Button button1;
+    private static java.awt.Button button1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private java.awt.TextField textField1;
+    private static java.awt.TextField textField1;
     // End of variables declaration//GEN-END:variables
 }
