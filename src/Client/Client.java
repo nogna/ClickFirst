@@ -9,7 +9,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
+ * UNUSED CLASS!!! WILL BE REMOVED
  * @author Nogna
  */
 public class Client {
@@ -17,7 +17,11 @@ public class Client {
     public static void main(String[] args) {
 
         setUp();
-        ConnectionToServer.waitForResponse();
+        
+        ConnectionToServer.getServerResponse();
+        ConnectionToServer.sendClientResponse();
+        ConnectionToServer.getServerResponse();
+        
         ConnectionToServer.closeConnection();
         System.exit(0);
 

@@ -30,7 +30,7 @@ public class Server {
     public static void main(String[] args) {
 
         try {
-            serverSocket = new ServerSocket(8080);
+            serverSocket = new ServerSocket(9010);
             gamelogic = new GameLogic();
             while (true) {
                 Socket newClient = waitForConnection(serverSocket);
@@ -41,7 +41,7 @@ public class Server {
                 }
             }
         } catch (IOException e) {
-            System.out.println("Something went wrong");
+            System.out.println("Something went wrong - " + e.getMessage());
         }
 
     }
