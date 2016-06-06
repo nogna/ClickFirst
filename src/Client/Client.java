@@ -31,7 +31,7 @@ public class Client {
 
         BackgroundPanel bg = new BackgroundPanel();
         bg.setUpBg();
-        ConnectionToServer.setUpToServer();
+        ConnectionToServer.setUpConnectionToServer();
 
     }
 

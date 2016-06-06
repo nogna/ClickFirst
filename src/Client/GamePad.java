@@ -90,14 +90,15 @@ public class GamePad extends javax.swing.JFrame {
         }
         //</editor-fold>
 
-        ConnectionToServer.setUpToServer();
+        if (ConnectionToServer.setUpConnectionToServer()) {
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> {
-            new GamePad().setVisible(true);
-        });
-        
-        
+            /* Create and display the form */
+            java.awt.EventQueue.invokeLater(() -> {
+                new GamePad().setVisible(true);
+            });
+
+        }
+
         //button1.setEnabled(false);
 //        textField1.setText("Waiting for other players");
         ConnectionToServer.getServerResponse();
@@ -105,7 +106,6 @@ public class GamePad extends javax.swing.JFrame {
         //button1.setEnabled(true);
         ConnectionToServer.getServerResponse();
         textField1.setText((String) ConnectionToServer.SERVER_RESPONSE);
-        
 
     }
 

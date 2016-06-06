@@ -62,17 +62,19 @@ public class ConnectionToServer {
         }
     }
 
-    static void setUpToServer() {
+    static boolean setUpConnectionToServer() {
         try {
             SOCKET = createSocketToServer();
             System.out.println("Socket ---- Success");
             createStreamsToServer();
             System.out.println("Streams ---- Success");
+            return true;
 
         } catch (IOException e) {
             System.out.println("Couldnt connect to " + SERVER + " fel:" + e);
 
         }
+        return false;
     }
 
     static void getServerResponse() {

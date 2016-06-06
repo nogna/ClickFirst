@@ -39,12 +39,12 @@ public class ConnectionToServerTest {
     }
 
     /**
-     * Test of setUpToServer method, of class ConnectionToServer.
+     * Test of setUpConnectionToServer method, of class ConnectionToServer.
      */
     @Test
     public void testSetUpToServer() {
         System.out.println("setUpToServer");
-        ConnectionToServer.setUpToServer();
+        ConnectionToServer.setUpConnectionToServer();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
