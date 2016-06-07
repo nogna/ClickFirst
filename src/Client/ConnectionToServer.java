@@ -13,7 +13,6 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
 /**
  *
  * @author Nogna
@@ -25,7 +24,7 @@ public class ConnectionToServer {
     static public ObjectOutputStream STREAM_OUT_TO_SERVER;
     static public ObjectInputStream STREAM_IN_FROM_SERVER;
     static final int DEFAULT_SOCKET_PORT = 9010;
-    static public Object SERVER_RESPONSE = null;
+    static public String SERVER_RESPONSE = null;
 
     private static Socket createSocketToServer() throws IOException {
 
@@ -79,9 +78,12 @@ public class ConnectionToServer {
     static void getServerResponse() {
         try {
 
-            SERVER_RESPONSE = STREAM_IN_FROM_SERVER.readObject();
+            SERVER_RESPONSE = (String) STREAM_IN_FROM_SERVER.readObject();
+            System.out.println("Server response: " + SERVER_RESPONSE);
 
-            System.out.println("Server response " + SERVER_RESPONSE);
+            if ("Press the buttom!".equals(SERVER_RESPONSE)) {
+                GamePad.button1.setEnabled(true);
+            }
 
         } catch (IOException | ClassNotFoundException ex) {
             Logger.getLogger(ConnectionToServer.class.getName()).log(Level.SEVERE, null, ex);
@@ -92,7 +94,7 @@ public class ConnectionToServer {
     static void sendClientResponse() {
         try {
             /*Scanner Sc = new Scanner(System.in);
-        String sendThisToServer = Sc.nextLine();
+             String sendThisToServer = Sc.nextLine();
              */
             String sendThisToServer = "I PRESSED THE BUTTON!";
             STREAM_OUT_TO_SERVER.writeObject(sendThisToServer);

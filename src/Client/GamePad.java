@@ -36,8 +36,10 @@ public class GamePad extends javax.swing.JFrame {
         jLabel1.setText("jLabel1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBounds(jLabel1.getVisibleRect());
         getContentPane().setLayout(null);
 
+        button1.setEnabled(false);
         button1.setLabel("Sit!");
         button1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -110,7 +112,7 @@ public class GamePad extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private static java.awt.Button button1;
+    public static java.awt.Button button1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private static java.awt.TextField textField1;
